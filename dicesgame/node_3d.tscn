@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://odbtm2f15vx5"]
+
+[ext_resource type="Script" path="res://rigid_body_3d.gd" id="1_ludfu"]
+[ext_resource type="PackedScene" uid="uid://c4b1rx3dpbvim" path="res://dice_tray_v_2.tscn" id="1_ytw3u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_okmra"]
+size = Vector3(5.74, 0.11, 5.265)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8shf"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gga0t"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.955793, -0.29404, -1.28529e-08, 0, -4.37114e-08, 1, -0.29404, 0.955793, 4.1779e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_okmra")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.46074, 0)
+script = ExtResource("1_ludfu")
+size = Vector3(6.335, 1.5, 1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_o8shf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0116234, 0.0745716, -0.0433702)
+mesh = SubResource("BoxMesh_gga0t")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-2.63512e-08, 0.797858, -0.602846, 3.48755e-08, 0.602846, 0.797858, 1, 1.77636e-15, -4.37114e-08, -7.18979, 6.98644, 0)
+
+[node name="Dice Tray v2" parent="." instance=ExtResource("1_ytw3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70609, 0.945405, -0.559949)
